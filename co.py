@@ -1,3 +1,4 @@
+# Check for the prices change everyday for a particular amazon product
 import math 
 import sklearn 
 import matplotlib
@@ -20,8 +21,8 @@ def price_check():
 	soup1 = BeautifulSoup(page.content,"html.parser")
 
 	soup2= BeautifulSoup(soup1.prettify(),"html.parser")
-
-	price=soup2.find(id="priceblock_ourprice").get_text()
+# 	Product Id can be checked through an inspect element on your browser
+	price=soup2.find(id="priceblock_ourprice").get_text() 
 	title=soup2.find(id="productTitle").get_text()
 
 	convert_float=float(price[1:3])
@@ -40,7 +41,7 @@ def emailsend():
 	server.starttls()
 	server.ehlo()
 
-	server.login('pranav2vis@gmail.com','vrvhecpcdgpyemco')
+	server.login('your_email_address','vrvhecpcdgpyemco')
 
 	subject = " Check the price , we just got a low one :)"
 
@@ -49,7 +50,7 @@ def emailsend():
 	msg = f"Subject : {subject}\n\n{body}"
 
 	server.sendmail(
-		'pranav2vis@gmail.com',	'nehajn0016@gmail.com',
+		'from_email_Address',	'to_email_address',
 		msg
 
 		)
